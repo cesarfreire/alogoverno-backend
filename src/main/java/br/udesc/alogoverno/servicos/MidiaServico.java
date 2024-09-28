@@ -1,5 +1,8 @@
 package br.udesc.alogoverno.servicos;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
@@ -19,10 +22,13 @@ import java.util.UUID;
 public class MidiaServico {
     private final S3Presigner s3Presigner;
 
-    public MidiaServico() {
+    @Autowired
+    private Environment env;
+
+    public MidiaServico(Environment env) {
         AwsBasicCredentials awsCreds = AwsBasicCredentials.create(
-                "ACCESS_KEY",
-                "SECRET_KEY"
+                env.getProperty("alogoverno.app.aws.credentials.accessKey"),
+                env.getProperty("alogoverno.app.aws.credentials.secretKey")
         );
         this.s3Presigner = S3Presigner.builder()
                 .region(Region.SA_EAST_1)
@@ -30,10 +36,10 @@ public class MidiaServico {
                 .build();
     }
 
-    public URL gerarUrlAssinada(String bucketName, String objectKey) {
+    public URL gerarUrlAssinada(String objectKey) {
         PresignedPutObjectRequest requisicaoPreAssinada = s3Presigner.presignPutObject(
                 builder -> builder.putObjectRequest(PutObjectRequest.builder()
-                        .bucket(bucketName)
+                        .bucket(env.getProperty("alogoverno.app.aws.s3.bucket"))
                         .key(objectKey)
                         .build())
                         .signatureDuration(Duration.ofMinutes(5)));

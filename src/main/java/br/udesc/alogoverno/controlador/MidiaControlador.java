@@ -19,8 +19,7 @@ public class MidiaControlador {
 
     @PostMapping(value = "/url-assinada", consumes = "application/json")
     public ResponseEntity<?> getUrlAssinada(@RequestBody UploadMidiaRequest request){
-        String nomeBucket = "alogoverno-midias";
-        URL urlPreAssinada = midiaServico.gerarUrlAssinada(nomeBucket, request.getFileName());
+        URL urlPreAssinada = midiaServico.gerarUrlAssinada(request.getFileName());
 
         return ResponseEntity.ok(urlPreAssinada.toString());
     }

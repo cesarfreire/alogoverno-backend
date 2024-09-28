@@ -1,0 +1,16 @@
+spring.application.name=backend
+spring.datasource.url= jdbc:postgresql://localhost:5432/alogoverno
+spring.datasource.username= postgres
+spring.datasource.password= postgres
+
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation= true
+
+# Hibernate ddl auto (create, create-drop, validate, update)
+spring.jpa.hibernate.ddl-auto= update
+alogoverno.app.jwtSecret=======================Cesinha=Spring===========================
+alogoverno.app.jwtExpirationMs=99999999
+alogoverno.app.jwtRefreshExpirationMs=86400000
+
+alogoverno.app.aws.credentials.accessKey=MINHA_ACCESS_KEY
+alogoverno.app.aws.credentials.secretKey=MINHA_SECRET_KEY
+alogoverno.app.aws.s3.bucket=meu-bucket

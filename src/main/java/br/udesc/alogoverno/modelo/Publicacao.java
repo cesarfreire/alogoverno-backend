@@ -10,7 +10,6 @@ import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 
 @Entity
@@ -41,7 +40,7 @@ public class Publicacao {
 
     @ManyToOne
     @Setter
-    @JoinColumn(name="autor_id", nullable = false)
+    @JoinColumn(name = "autor_id", nullable = false)
     private Usuario autor;
 
     @OneToMany(mappedBy = "publicacao", cascade = CascadeType.ALL, orphanRemoval = true)
