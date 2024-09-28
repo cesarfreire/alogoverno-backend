@@ -58,7 +58,7 @@ Certifique-se de que as seguintes ferramentas estão instaladas em seu ambiente:
     ./mvnw spring-boot:run
     ```
 
-2. A aplicação estará disponível em [http://localhost:8080](http://localhost:8080).
+2. A aplicação estará disponível em [http://localhost:8080/api](http://localhost:8080/api).
 
 ## Endpoints Principais da API
 
